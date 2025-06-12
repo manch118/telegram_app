@@ -1032,18 +1032,18 @@ async function initiateCardPayment(orderId, total) {
     }
 }
 
-// Вызываем обработку параметров URL при загрузке страницы
+// Вызываем обработку параметров URL при загрузке страницы bulichniy klyuch stripe
 document.addEventListener('DOMContentLoaded', () => {
-    stripe = Stripe('pk_test_51RWuClR53YSpLuMZjpMsSSbQTVAaO3dIyoEpDIpzrb6dRxvZceaH2mpDniwHpSKsR7WJVYYbeucIcHFjFsoNCnY000HbTeIFtC');
+    stripe = Stripe('');
     window.stripe = stripe;
     handlePaymentRedirect(); // Обрабатываем параметры URL
     fetchProducts();
     fetchCart();
 });
 let stripe;
-  // Инициализация Stripe (оставляем внутри DOMContentLoaded)
+  // Инициализация Stripe (оставляем внутри DOMContentLoaded)zdesmojno bublichniyjlyuch strip
 document.addEventListener('DOMContentLoaded', async () => {
-    stripe = Stripe('pk_test_51RWuClR53YSpLuMZjpMsSSbQTVAaO3dIyoEpDIpzrb6dRxvZceaH2mpDniwHpSKsR7WJVYYbeucIcHFjFsoNCnY000HbTeIFtC');
+    stripe = Stripe('');
     window.stripe = stripe; // Делаем stripe глобально доступным
 
 
