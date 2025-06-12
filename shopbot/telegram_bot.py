@@ -4,8 +4,13 @@ from aiogram.types import Message, WebAppInfo, InlineKeyboardButton, InlineKeybo
 from aiogram.filters import Command
 from aiogram.enums import ParseMode
 from aiogram.client.default import DefaultBotProperties
+from dotenv import load_dotenv
+import os
 
-API_TOKEN = '7609202424:AAEHg87g3aoxZxoufRk7m4TM3vyznN8aqMw'
+load_dotenv(override=True)
+
+#shop_bot_tocken
+API_TOKEN = os.getenv("API_TOKEN")
 
 # ✅ Новый способ задания настроек
 bot = Bot(

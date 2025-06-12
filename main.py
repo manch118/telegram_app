@@ -18,7 +18,7 @@ import traceback
 import asyncio
 
 load_dotenv(override=True)  # Принудительно перезаписывать переменные
-bot_token = os.getenv("BOT_TOKEN")
+bot_token = os.getenv("ADMIN_BOT")
 admin_chat_id = os.getenv("ADMIN_CHAT_ID")
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 load_dotenv(override=True)
@@ -63,7 +63,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://web.telegram.org", "https://5370-87-241-180-199.ngrok-free.app", "*"],
+    allow_origins=["https://web.telegram.org", "https://0062-87-241-151-177.ngrok-free.app", "*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
