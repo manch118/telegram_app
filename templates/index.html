@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mhshops Mini App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <img src="/static/images/logo.png" alt="Logo">
+      <span>Mshops</span>
+    </div>
+    <div class="icons">
+      <button onclick="openCart()">
+        🛒 <span id="cartCount">0</span>
+      </button>
+      <button class="menu-btn" onclick="openMenu()">☰</button>
+    </div>
+  </div>
+  <div class="menu-sidebar" id="menuSidebar">
+    <button class="close-btn" onclick="closeMenu()">✖</button>
+    <div class="ad">
+      <img src="/static/images/es3.webp" alt="Sidebar Ad">
+    </div>
+    <ul>
+      <li onclick="showMyOrders()"><i>📋</i> Мои заказы</li>
+      <li onclick="showDeliveryInfo()"><i>🚚</i> Доставка</li>
+      <li onclick="showPaymentInfo()"><i>💳</i> Оплата</li>
+      <li onclick="showAboutInfo()"><i>🏬</i> О магазине</li>
+      <li onclick="showReviews()"><i>⭐</i> Отзывы</li>
+      <li onclick="showContactInfo()"><i>📞</i> Контакты</li>
+      <li onclick="showChannel()"><i>📢</i> На наш канал</li>
+      <li onclick="showAdminPanel()"><i>🔧</i> Админ-панель</li>
+    </ul>
+  </div>
+  <div class="search-bar">
+    <input type="text" placeholder="Поиск товаров..." oninput="searchProducts(this.value)">
+    <button id="filterBtn" onclick="showFilters()">🛠</button>
+  </div>
+  <div class="banner" id="banner" onclick="bannerClick()">
+    <img src="/static/images/es1.webp" alt="Banner 1">
+    <img src="/static/images/es2.webp" alt="Banner 2" class="hidden">
+    <img src="/static/images/es3.webp" alt="Banner 3" class="hidden">
+  </div>
+ <button class="premium-btn" onclick="showPremiumProduct()">Премиум: Топ продаж наушники</button>
+
+  <div class="popup-overlay" id="premiumPopup" data-product-id="5" style="display: none;">
+    <div class="popup-content">
+      <h2>Премиум товар</h2>
+      <img src="/static/images/naushnik.png" alt="naushniki" style="max-width: 100%; border-radius: 10px;">
+      <p><strong>Наушники высокого качества</strong></p>
+      <p>Цена: <strong>23232 ₽</strong></p>
+      <div style="margin-top: 15px;">
+        <button onclick="confirmAddPremium()">Добавить в корзину</button>
+        <button onclick="closePremiumPopup()">Отмена</button>
+      </div>
+    </div>
+  </div>
+  <div class="categories">
+    <div class="category active" onclick="filterCategory('all')">Все</div>
+    <div class="category" onclick="filterCategory('electronics')">Электроника</div>
+    <div class="category" onclick="filterCategory('clothing')">Одежда</div>
+  </div>
+  <div class="product-grid" id="productGrid"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <button class="close-btn" onclick="closeCart()">✖</button>
+    <h2>Корзина</h2>
+    <div id="cartItems"></div>
+    <button class="checkout-btn" onclick="openCheckoutPopup()">Оформить заказ</button>
+    <button class="clear-cart-btn" onclick="clearCart()">Очистить корзину</button>
+  </div>
+  <div class="filter-popup" id="filterPopup" style="display: none;">
+    <div class="filter-popup-content">
+      <button class="close-btn" onclick="closeFilterPopup()">✖</button>
+      <h2>Фильтры</h2>
+      <p>Диапазон цен: <span id="priceRangeDisplay">0 ₽ - 30000 ₽</span></p>
+      <button onclick="selectFilter('price')">Установить цену</button>
+      <button onclick="selectFilter('new')">По новизне</button>
+      <button onclick="selectFilter('popular')">По популярности</button>
+      <button onclick="selectFilter('reset')">Сбросить фильтры</button>
+    </div>
+  </div>
+<div class="checkout-popup" id="checkoutPopup">
+    <div class="checkout-popup-content">
+        <button class="close-btn" onclick="closeCheckoutPopup()">✖</button>
+        <h2>Оформление заказа</h2>
+        <form id="checkoutForm">
+            <label for="phone">Телефон:
+                <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" pattern="\+7[0-9]{10}">
+            </label>
+            <label for="address">Адрес доставки:
+                <input type="text" id="address" name="address" placeholder="Город, улица, дом">
+            </label>
+            <label for="delivery_method">Способ доставки:
+                <select id="delivery_method" name="delivery_method" required>
+                    <option value="Курьер">Курьер</option>
+                    <option value="Почта">Почта</option>
+                    <option value="Самовывоз">Самовывоз</option>
+                </select>
+            </label>
+   <label for="payment_method">Способ оплаты:
+        <select id="payment_method" name="payment_method" required>
+            <option value="Наличные">Наличные</option>
+            <option value="Карта" selected>Карта</option>
+        </select>
+    </label>
+    <button type="submit">Подтвердить заказ</button>
+        </form>
+        <div id="payment-element"></div> <!-- Для Stripe Elements -->
+    </div>
+</div>
+  <div class="admin-panel-popup" id="adminPanelPopup" style="display: none;">
+    <div class="filter-popup-content">
+      <button class="close-btn" onclick="closeAdminPanel()">✖</button>
+      <h2>Админ-панель</h2>
+      <button onclick="showAddProductForm()">Добавить товар</button>
+      <h3>Список товаров</h3>
+      <div id="adminProductList"></div>
+    </div>
+  </div>
+  <div class="add-product-popup" id="addProductPopup" style="display: none;">
+    <div class="filter-popup-content">
+      <button class="close-btn" onclick="closeAddProductPopup()">✖</button>
+      <h2>Добавить товар</h2>
+      <form id="addProductForm" enctype="multipart/form-data">
+        <label>Название:
+          <input type="text" name="name" required placeholder="Название товара">
+        </label>
+        <label>Цена (₽):
+          <input type="number" name="price" required placeholder="Цена" min="0" step="0.01">
+        </label>
+        <label>Изображение:
+          <input type="file" name="img" accept="image/*" onchange="previewImage(event)">
+          <img id="imagePreview" style="display: none; max-width: 100%; margin-top: 10px;">
+        </label>
+        <label>Категория:
+          <select name="category" required>
+            <option value="electronics">Электроника</option>
+            <option value="clothing">Одежда</option>
+          </select>
+        </label>
+        <button type="submit">Добавить товар</button>
+      </form>
+    </div>
+  </div>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="static/js/app.js"></script>
+<button id="scrollUpBtn" aria-label="Scroll to top">
+  <span>&uarr;</span>
+</button>
+</body>
+</html>

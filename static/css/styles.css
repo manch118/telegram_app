@@ -1,0 +1,1001 @@
+body {
+  background: #FFFFFF;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #F5F5F5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header .logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+.header button {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+}
+.menu-btn {
+  background: linear-gradient(90deg, #00FF88, #00CC66);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 24px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.menu-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+.search-bar {
+  margin: 16px;
+  padding: 10px;
+  background: #F0F0F0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+.search-bar input {
+  background: none;
+  border: none;
+  color: #000;
+  width: 100%;
+  outline: none;
+  font-size: 14px;
+}
+.search-bar button {
+  background: none;
+  border: none;
+  color: #00FF88;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 8px;
+  z-index: 11;
+}
+.search-bar button:hover {
+  opacity: 0.8;
+}
+.banner {
+  margin: 0 16px 16px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s;
+}
+.banner img.hidden {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+}
+.premium-btn {
+  display: block;
+  margin: 0 16px 16px;
+  padding: 12px;
+  background: linear-gradient(90deg, #FF2E63, #FF5E8D);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.premium-btn:hover {
+  opacity: 0.85;
+}
+.categories {
+  display: flex;
+  overflow-x: auto;
+  padding: 8px 16px;
+  gap: 12px;
+  white-space: nowrap;
+}
+.category {
+  padding: 8px 16px;
+  background: #F0F0F0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: #000;
+}
+.category.active {
+  background: linear-gradient(90deg, #00FF88, #00CC66);
+  color: #000;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.product-card {
+  background: #F5F5F5;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,255,136,0.2);
+}
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.product-card h3 {
+  font-size: 14px;
+  margin: 8px;
+  font-weight: 500;
+  color: #000;
+}
+.product-card p {
+  font-size: 14px;
+  color: #00FF88;
+  margin: 0 8px 12px;
+}
+.add-btn {
+  background: linear-gradient(90deg, #00FF88, #00CC66);
+  border: none;
+  padding: 10px;
+  width: 100%;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.add-btn:hover {
+  opacity: 0.85;
+}
+.cart-sidebar {
+  position: fixed;
+  right: -100%;
+  top: 0;
+  width: 85%;
+  height: 100%;
+  background: #F5F5F5;
+  padding: 16px;
+  transition: right 0.3s ease;
+  z-index: 200;
+}
+.cart-sidebar.open {
+  right: 0;
+}
+.cart-sidebar .close-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 20px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #E0E0E0;
+}
+.cart-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.quantity button {
+  background: #E0E0E0;
+  border: none;
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.checkout-btn {
+  background: linear-gradient(90deg, #FF2E63, #FF5E8D);
+  border: none;
+  padding: 12px;
+  width: 100%;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+.clear-cart-btn {
+  background: linear-gradient(90deg, #FF5E8D, #FF2E63);
+  border: none;
+  padding: 12px;
+  width: 100%;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.clear-cart-btn:hover {
+  opacity: 0.85;
+}
+.menu-sidebar {
+  position: fixed;
+  right: -100%;
+  top: 0;
+  width: 75%;
+  height: 100vh;
+  background: #F5F5F5;
+  padding: 16px;
+  transition: right 0.3s ease;
+  z-index: 200;
+  overflow-y: auto; /* Прокрутка по вертикали */
+  box-sizing: border-box;
+  /* Тень внизу, чтобы показать, что есть прокрутка */
+  box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.2);
+}
+
+.menu-sidebar.open {
+  right: 0;
+}
+
+.menu-sidebar .close-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 20px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.menu-sidebar .ad {
+  width: 100%;
+  margin: 8px 0; /* Уменьшаем отступы */
+  text-align: center;
+}
+
+.menu-sidebar .ad img {
+  width: 100%;
+  max-width: 250px; /* Уменьшаем размер рекламы */
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+.menu-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0; /* Уменьшаем отступы */
+}
+
+.menu-sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0; /* Уменьшаем padding для компактности */
+  border-bottom: 1px solid #E0E0E0;
+  font-size: 15px; /* Уменьшаем шрифт */
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  color: #000;
+}
+
+.menu-sidebar li:hover {
+  color: #00FF88;
+  transform: translateX(4px);
+}
+
+.menu-sidebar li i {
+  font-size: 18px; /* Уменьшаем иконки */
+  color: #00FF88;
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 360px) {
+  .menu-sidebar {
+    width: 90%;
+  }
+  .menu-sidebar .ad img {
+    max-width: 200px;
+  }
+  .menu-sidebar li {
+    font-size: 14px;
+    padding: 6px 0;
+  }
+}
+.filter-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 300;
+}
+.filter-popup-content {
+  background: #F5F5F5;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 400px;
+  position: relative;
+}
+.filter-popup-content h2 {
+  margin: 40px 0 16px; /* Добавляем отступ сверху для заголовка */
+  text-align: center; /* Центрируем заголовок */
+}
+.filter-popup-content p {
+  margin: 0 0 16px;
+}
+.filter-popup-content button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  background: linear-gradient(90deg, #00FF88, #00CC66);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+}
+.filter-popup-content button:hover {
+  opacity: 0.85;
+}
+.filter-popup-content .close-btn {
+  background: #E0E0E0; /* Добавляем фон для лучшей видимости */
+  color: #000;
+  font-size: 20px;
+  position: absolute;
+  top: 10px; /* Уменьшаем отступ сверху */
+  right: 10px; /* Увеличиваем отступ справа */
+  padding: 5px; /* Добавляем padding для кликабельности */
+  border: none;
+  border-radius: 50%; /* Круглая форма */
+  cursor: pointer;
+  z-index: 10;
+  width: 30px; /* Фиксированная ширина */
+  height: 30px; /* Фиксированная высота */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Центрируем символ */
+}
+.admin-panel-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 300;
+}
+.admin-panel-popup button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  background: linear-gradient(90deg, #00FF88, #00CC66);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+}
+.admin-panel-popup button:hover {
+  opacity: 0.85;
+}
+.admin-panel-popup .product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #E0E0E0;
+}
+.admin-panel-popup .product-item button {
+  background: linear-gradient(90deg, #FF2E63, #FF5E8D);
+  padding: 6px 12px;
+  width: auto;
+}
+#verjikomer
+.add-product-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.add-product-popup.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.add-product-popup .filter-popup-content {
+  background: var(--tg-theme-bg, #ffffff);
+  padding: 24px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh; /* Ограничиваем высоту формы */
+  overflow-y: auto; /* Прокрутка, если контент выходит за пределы */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column; /* Устанавливаем flex для управления компоновкой */
+  position: relative;
+}
+
+.add-product-popup form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1; /* Форма занимает доступное пространство */
+}
+
+.add-product-popup #imagePreview {
+  display: block;
+  width: 100%;
+  max-height: 150px; /* Уменьшаем максимальную высоту изображения */
+  object-fit: contain; /* Сохраняем пропорции */
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+.add-product-popup label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.add-product-popup input,
+.add-product-popup select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.add-product-popup button[type="submit"] {
+  background: linear-gradient(90deg, #00FF88, #00CC66);
+  border: none;
+  padding: 12px;
+  width: 100%;
+  color: #000;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 16px;
+  position: sticky;
+  bottom: 0;
+  z-index: 10; /* Кнопка выше контента формы */
+}
+
+.add-product-popup button[type="submit"]:hover {
+  opacity: 0.85;
+}
+
+.add-product-popup .close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--tg-theme-hint, #e0e0e0);
+  border: none;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--tg-theme-text, #000000);
+  cursor: pointer;
+  padding: 6px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 360px) {
+  .add-product-popup .filter-popup-content {
+    width: 95%;
+    padding: 16px;
+  }
+  .add-product-popup #imagePreview {
+    max-height: 120px; /* Ещё меньше для маленьких экранов */
+  }
+}
+
+.add-product-popup #imagePreview {
+  display: block;
+  max-width: 0%;
+  max-height: 200px; /* Ограничиваем высоту изображения */
+  object-fit: contain; /* Сохраняем пропорции изображения */
+  margin: 10px auto; /* Центрируем изображение */
+  border-radius: 8px; /* Добавляем скругление углов для красоты */
+}
+@keyframes fly-to-cart {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.5) translate(200px, -200px); opacity: 0; }
+}
+.fly-to-cart {
+  animation: fly-to-cart 0.5s ease forwards;
+}
+
+
+/* Стили для кастомных алертов */
+.tg-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+}
+
+.tg-alert-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: 85%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tg-alert-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.tg-alert-message {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  white-space: pre-line;
+  margin-bottom: 24px;
+}
+
+.tg-alert-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.tg-alert-button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tg-alert-button-ok {
+  background: #2481cc;
+  color: white;
+}
+
+#verj
+.checkout-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Затемнённый фон */
+    z-index: 1000; /* Высокий z-index, чтобы быть поверх всего */
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.checkout-popup.show {
+    display: flex; /* Показываем popup */
+}
+
+.checkout-popup-content {
+    background: var(--tg-theme-bg, #ffffff);
+    color: var(--tg-theme-text, #000000);
+    padding: 24px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.checkout-popup.show .checkout-popup-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.checkout-popup h2 {
+    margin: 0 0 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--tg-theme-text, #000000);
+    text-align: center;
+}
+
+.checkout-popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.checkout-popup label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--tg-theme-text, #000000);
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-popup input,
+.checkout-popup select {
+    margin-top: 8px;
+    padding: 10px 12px 10px 36px;
+    border: 1px solid var(--tg-theme-hint, #cccccc);
+    border-radius: 8px;
+    background: var(--tg-theme-bg, #ffffff);
+    color: var(--tg-theme-text, #000000);
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.checkout-popup input:focus,
+.checkout-popup select:focus {
+    border-color: var(--tg-theme-button, #00FF88);
+    box-shadow: 0 0 6px rgba(0, 255, 136, 0.2);
+}
+
+.checkout-popup button[type="submit"],
+.checkout-popup button[type="button"] {
+    background: var(--tg-theme-button, #28a745);
+    color: var(--tg-theme-button-text, #ffffff);
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.checkout-popup button[type="submit"]:hover,
+.checkout-popup button[type="button"]:hover {
+    filter: brightness(90%);
+    transform: translateY(-1px);
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--tg-theme-hint, #e0e0e0);
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    color: var(--tg-theme-text, #000000);
+    cursor: pointer;
+    padding: 6px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Иконки для полей */
+.checkout-popup label::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 32px;
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+/* Остальные стили иконок остаются без изменений */
+.checkout-popup label[for="phone"]::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.12.35.03.74-.24 1.02l-2.2 2.2z"/></svg>');
+}
+
+.checkout-popup label[for="address"]::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>');
+}
+
+.checkout-popup label[for="delivery_method"]::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 7h-3V6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v1H3c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2h2.38c-.25-.59-.38-1.24-.38-1.9 0-2.48 2.02-4.5 4.5-4.5.66 0 1.31.13 1.9.38H19c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM8 6h6v1H8V6zm6 11.5c0 1.38-1.12 2.5-2.5 2.5S9 18.88 9 17.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5z"/></svg>');
+}
+
+.checkout-popup label[for="payment_method"]::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10z"/></svg>');
+}
+
+/* Адаптивность */
+@media (max-width: 360px) {
+    .checkout-popup-content {
+        width: 95%;
+        padding: 16px;
+    }
+}
+
+.product-grid {
+    position: relative;
+    z-index: 1; /* Низкий z-index, чтобы popup был выше */
+}
+
+.checkout-popup-content {
+    transform: scale(0.8);
+    opacity: 0;
+}
+
+.checkout-popup.show .checkout-popup-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#verjot 
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+#premiumPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#premiumPopup .popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+#premiumPopup .popup-content button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #00cc88;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#premiumPopup .popup-content button:hover {
+  background-color: #00aa70;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+#verj_stripe_hmar
+.payment-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center; /* Вернули центрирование по вертикали */
+    justify-content: center;
+    z-index: 10001;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.payment-popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    width: 400px;
+    min-height: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 auto; /* Центрирование с учетом отступов */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10%); /* Поднимаем немного вверх */
+}
+
+.payment-popup-content .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.payment-popup-content #payment-element {
+    min-height: 50px; /* Уменьшаем минимальную высоту */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-popup-content label {
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+}
+
+.payment-popup-content input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.payment-popup-content button {
+    padding: 12px;
+    background-color: #00cc88;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.payment-popup-content button:hover {
+    background-color: #00aa70;
+}
+
+
+.payment-popup-content .payment-amount {
+    font-size: 15px; /* Уменьшаем размер текста суммы, если он большой */
+    color: #000;
+    font-weight: bold;
+    margin: 0;
+}
+
+.payment-popup-content .payment-details {
+    font-size: 14px; /* Мелкий текст для деталей */
+    color: #666;
+}
+
+
+#scrollUpBtn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  font-size: 30px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s ease;
+}
+
+#scrollUpBtn:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#scrollUpBtn span {
+  display: block;
+  margin-top: -2px; /* немного приподнимаем стрелку визуально */
+}
