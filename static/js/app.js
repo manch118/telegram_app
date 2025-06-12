@@ -1,5 +1,5 @@
 /* eslint-disable */
-const API_URL = "https://0062-87-241-151-177.ngrok-free.app";
+const API_URL = "https://telegram-app-1up1.onrender.com";
 let cart = [];
 let filteredProducts = [];
 let priceRange = [0, 3000000];
@@ -672,7 +672,7 @@ function confirmAddPremium() {
     const userId = Telegram.WebApp.initDataUnsafe.user?.id.toString() || "test_user";
     const quantity = 1;
 
-    fetch('https://0062-87-241-151-177.ngrok-free.app/cart/', {
+    fetch('https://telegram-app-1up1.onrender.com/cart/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

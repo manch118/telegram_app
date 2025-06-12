@@ -63,7 +63,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://web.telegram.org", "https://0062-87-241-151-177.ngrok-free.app", "*"],
+    allow_origins=["https://web.telegram.org", "https://telegram-app-1up1.onrender.com", "*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
