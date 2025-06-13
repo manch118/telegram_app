@@ -6,6 +6,7 @@ from aiogram.enums import ParseMode
 from aiogram.client.default import DefaultBotProperties
 from dotenv import load_dotenv
 import os
+from aiogram.fsm.storage.memory import MemoryStorage
 
 load_dotenv(override=True)
 
@@ -27,7 +28,7 @@ async def cmd_start(message: Message):
             [
                 InlineKeyboardButton(
                     text="🛍 Открыть магазин",
-                    web_app=WebAppInfo(url="https://5370-87-241-180-199.ngrok-free.app" \
+                    web_app=WebAppInfo(url="https://telegram-app-1up1.onrender.com" \
                    "")
                 )
             ]
