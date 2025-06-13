@@ -1,25 +1,21 @@
-import asyncio
-from aiogram import Bot, Dispatcher, F
+from aiogram import Bot, Dispatcher
 from aiogram.types import Message, WebAppInfo, InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.filters import Command
 from aiogram.enums import ParseMode
 from aiogram.client.default import DefaultBotProperties
 from dotenv import load_dotenv
-import os
 from aiogram.fsm.storage.memory import MemoryStorage
+import os
 
 load_dotenv(override=True)
-
-#shop_bot_tocken
 API_TOKEN = os.getenv("API_TOKEN")
 
-# ✅ Новый способ задания настроек
 bot = Bot(
     token=API_TOKEN,
     default=DefaultBotProperties(parse_mode=ParseMode.HTML)
 )
 
-dp = Dispatcher()
+dp = Dispatcher(storage=MemoryStorage())
 
 @dp.message(Command("start"))
 async def cmd_start(message: Message):
@@ -28,17 +24,12 @@ async def cmd_start(message: Message):
             [
                 InlineKeyboardButton(
                     text="🛍 Открыть магазин",
-                    web_app=WebAppInfo(url="https://telegram-app-1up1.onrender.com" \
-                   "")
+                    web_app=WebAppInfo(url="https://4acd-87-241-145-214.ngrok-free.app")
                 )
             ]
         ]
     )
     await message.answer("Добро пожаловать в магазин!", reply_markup=kb)
 
-async def main():
+async def start_bot():
     await dp.start_polling(bot)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
